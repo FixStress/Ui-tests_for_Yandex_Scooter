@@ -10,8 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.samokat.pages.HomePage;
 
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ClickLogoTests {
     private WebDriver driver;
@@ -49,7 +48,7 @@ public class ClickLogoTests {
         }
         // Проверяем URL текущей вкладки
         String currentUrl = driver.getCurrentUrl();
-        assertTrue(currentUrl, currentUrl.equals("https://ya.ru"));
+        assertEquals(currentUrl, "https://ya.ru");
     }
 
     // Тестирование клика на слово Самокат со страницы заполнения формы заказа
@@ -90,7 +89,7 @@ public class ClickLogoTests {
         homePage.clickWordSamokatInLogo();
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//input[@value='']")));
-        assertTrue(driver.findElement(By.xpath("//input[@value='']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath(".//input[@value='']")).isDisplayed());
 
     }
 
