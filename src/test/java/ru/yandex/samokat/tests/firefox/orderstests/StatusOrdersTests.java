@@ -15,7 +15,6 @@ public class StatusOrdersTests {
     public void setUp() {
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
-        HomePage homePage = new HomePage(driver).open();
     }
 
     @After
@@ -28,7 +27,8 @@ public class StatusOrdersTests {
     // При вводе несуществующего заказа
     @Test
     public void NegativeTestsOrderStatus() {
-        HomePage homePage = new HomePage(driver)
+        new HomePage(driver)
+                .open()
                 .goToOrderStatus("24252627");
         StatusOrderPage statusOrderPage = new StatusOrderPage(driver);
         statusOrderPage.notFoundImage();

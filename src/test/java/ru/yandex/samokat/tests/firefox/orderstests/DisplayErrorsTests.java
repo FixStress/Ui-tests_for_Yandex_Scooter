@@ -51,7 +51,7 @@ public class DisplayErrorsTests {
     // Тестирование на отображение ошибок в полях ввода при некорректном вводе
     @Test
     public void displayingInputFieldErrors() {
-        HomePage homePage = new HomePage(driver)
+        new HomePage(driver)
                 .open()
                 .clickOrderButtonHeader();
         WhoIsTheScooterPage whoIsTheScooterPage = new WhoIsTheScooterPage(driver);

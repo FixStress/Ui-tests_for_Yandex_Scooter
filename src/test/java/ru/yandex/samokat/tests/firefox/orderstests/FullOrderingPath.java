@@ -32,10 +32,10 @@ public class FullOrderingPath {
     // через кнопку <<Заказать>> в хедере
     @Test
     public void positiveCheckOutHeaderButton() {
-        HomePage homePage = new HomePage(driver)
+        new HomePage(driver)
                 .open()
                 .clickOrderButtonHeader();
-        WhoIsTheScooterPage whoIsTheScooterPage = new WhoIsTheScooterPage(driver)
+        new WhoIsTheScooterPage(driver)
                 .whoIsTheScooterPageWait()
                 .fillInAllInputFields(
                         "Наруто",
@@ -59,9 +59,9 @@ public class FullOrderingPath {
     // через кнопку <<Заказать>> в центре страницы
     @Test
     public void positiveCheckOutMiddleButton() {
-        HomePage homePage = new HomePage(driver)
+        new HomePage(driver)
                 .open().skrollAndClickOrderButtonMiddle();
-        WhoIsTheScooterPage whoIsTheScooterPage = new WhoIsTheScooterPage(driver)
+        new WhoIsTheScooterPage(driver)
                 .whoIsTheScooterPageWait()
                 .fillInAllInputFields(
                         "Саске",
@@ -78,7 +78,7 @@ public class FullOrderingPath {
                         "Не вернусь!")
                 .clickButtonYes();
         Assert.assertEquals(expected, aboutRent.orderIsProcessed());
-        ;
+
 
     }
 }
