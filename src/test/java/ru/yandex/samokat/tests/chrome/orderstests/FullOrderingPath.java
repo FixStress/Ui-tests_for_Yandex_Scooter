@@ -1,0 +1,84 @@
+package ru.yandex.samokat.tests.chrome.orderstests;
+
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import ru.yandex.samokat.pages.HomePage;
+import ru.yandex.samokat.pages.orderpages.AboutRentPage;
+import ru.yandex.samokat.pages.orderpages.WhoIsTheScooterPage;
+
+public class FullOrderingPath {
+    private WebDriver driver;
+
+
+    @Before
+    public void setUp() {
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+    }
+
+    @After
+    public void tearDown() {
+        driver.quit();
+
+    }
+
+    private final boolean expected = true;
+
+    // Тестирование полного пути оформления заказа
+    // через кнопку <<Заказать>> в хедере
+    @Test
+    public void positiveCheckOutHeaderButton() {
+        new HomePage(driver)
+                .open()
+                .clickOrderButtonHeader();
+        new WhoIsTheScooterPage(driver)
+                .whoIsTheScooterPageWait()
+                .fillInAllInputFields(
+                        "Наруто",
+                        "Узумаки",
+                        "Коноха",
+                        "1",
+                        "+79998887766");
+        AboutRentPage aboutRentPage = new AboutRentPage(driver)
+                .aboutRentWait()
+                .fillInAllInputFields(
+                        1,
+                        "трое суток",
+                        "black",
+                        "Саске, вернись в Коноху!")
+                .clickButtonYes();
+        Assert.assertEquals(expected, aboutRentPage.orderIsProcessed());
+
+    }
+
+    // Тестирование полного пути оформления заказа
+    // через кнопку <<Заказать>> в центре страницы
+    @Test
+    public void positiveCheckOutMiddleButton() {
+        new HomePage(driver)
+                .open().skrollAndClickOrderButtonMiddle();
+        new WhoIsTheScooterPage(driver)
+                .whoIsTheScooterPageWait()
+                .fillInAllInputFields(
+                        "Саске",
+                        "Учиха",
+                        "Деревня Скрытого Звука",
+                        "5",
+                        "89997776655");
+        AboutRentPage aboutRent = new AboutRentPage(driver)
+                .aboutRentWait()
+                .fillInAllInputFields(
+                        7,
+                        "сутки",
+                        "grey",
+                        "Не вернусь!")
+                .clickButtonYes();
+        Assert.assertEquals(expected, aboutRent.orderIsProcessed());
+        ;
+
+    }
+}
